@@ -26,4 +26,17 @@
     position: fixed;
     bottom: 30px;
     right: 15px;
+    border-radius: 50%;
+    height: 5rem;
+    width: 5rem;
+    font-size: 4rem;
+    border-style: none;
+    background-color: lightblue;
+    cursor: pointer;
+}
+
+#add-book:hover {
+	height: 6rem;
+	width: 6rem;
+	font-size: 5rem;
 }
