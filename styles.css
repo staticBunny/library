@@ -1,42 +1,49 @@
 * {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .container {
-    display: grid;
-    grid-template-rows: 1fr 10fr;
+  display: grid;
+  grid-template-rows: 1fr 10fr;
 }
 
 .header {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .info {
-    justify-self: flex-end;
+  justify-self: flex-end;
 }
 
 .heading {
-    align-self: flex-end;
-    font-size: xx-large;
+  align-self: flex-end;
+  font-size: xx-large;
 }
 
 #add-book {
-    position: fixed;
-    bottom: 30px;
-    right: 15px;
-    border-radius: 50%;
-    height: 5rem;
-    width: 5rem;
-    font-size: 4rem;
-    border-style: none;
-    background-color: lightblue;
-    cursor: pointer;
+  position: fixed;
+  bottom: 30px;
+  right: 15px;
+  border-radius: 50%;
+  height: 5rem;
+  width: 5rem;
+  font-size: 4rem;
+  border-style: none;
+  background-color: lightblue;
+  cursor: pointer;
 }
 
 #add-book:hover {
-	height: 6rem;
-	width: 6rem;
-	font-size: 5rem;
+  height: 6rem;
+  width: 6rem;
+  font-size: 5rem;
 }
+
+.main {
+  padding: 50px;
+  display: grid;
+  grid-auto-flow: column;
+}
+      	
