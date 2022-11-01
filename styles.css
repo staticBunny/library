@@ -46,4 +46,19 @@
   display: grid;
   grid-auto-flow: column;
 }
-      	
+
+form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  gap: 10px;
+  padding: 50px;
+  background-color: yellow;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+}
+
