@@ -3,14 +3,22 @@
   margin: 0;
 }
 
-.container {
-  display: grid;
-  grid-template-rows: 1fr 10fr;
+:root {
+		--book-width: 25vw;
+}
+
+body { 
+		font-family: 'Roboto+Mono', sans-serif;
 }
 
 .header {
-  display: flex;
-  justify-content: space-evenly;
+		padding: 20px;
+		text-align: left;
+		box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.header h1 {
+		font-size: 3rem;
 }
 
 .info {
@@ -19,7 +27,6 @@
 
 .heading {
   align-self: flex-end;
-  font-size: xx-large;
 }
 
 #add-book {
@@ -44,21 +51,96 @@
 .main {
   padding: 50px;
   display: grid;
-  grid-auto-flow: column;
+		gap: 50px;
+		grid-template-columns: repeat(auto-fit, minmax(var(--book-width), 1fr));
+		grid-auto-flow: row;
 }
 
 form {
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 30%;
+  left: 40%;
   display: grid;
-  gap: 10px;
+  gap: 15px;
   padding: 50px;
-  background-color: yellow;
+  background-color: lightblue;
+		border-radius: 15px;
+		font-weight: lighter;
+		width: 200px;
 }
 
 .input {
   display: flex;
   flex-direction: column;
+		gap: 5px;
+}
+
+.input input {
+	padding: 5px;
+	border-radius: 5px;
+	border-style: none;
+}
+
+.checkbox {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	align-items: center;
+}
+
+.checkbox input {
+	width: 20px;
+	height: 20px;
+}
+
+form .buttons {
+	justify-self: center;
+	margin-top: 20px;
+}
+
+form .buttons button {
+	padding: 10px;
+	border-radius: 10px;
+	border-style: none;
+	cursor: pointer;
+}
+
+form .buttons button:hover {
+		opacity: 0.8;
+}
+
+.book {
+		display: grid;
+		grid-template-rows: repeat(4, 1fr);
+		align-items: center;
+		justify-content: center;
+		border: 0px solid black;
+		border-radius: 10px;
+		padding: 10px;
+		height: 25vh;
+		width: var(--book-width);
+		text-align:	center;
+		box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+			
+.book :first-child {
+		font-size: 1.2rem;
+		font-weight: bold;
+		word-wrap: break-word;
+}
+
+.book :last-child {
+		background-color: lightgreen;
+		padding: 5px;
+		cursor: pointer;
+		border-radius: 5px;
+		border: none;
+		font-size: 1rem;
+		width: 20vw;
+		justify-self: center;
+}
+
+.book :last-child:hover {
+		opacity: 0.8;
 }
 

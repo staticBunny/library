@@ -9,7 +9,10 @@ const pages = document.getElementById("pages");
 const read = document.getElementById("read");
 const submitbtn = document.getElementById("submit");
 
-let myLibrary = [];
+const statusOfBooks = Array.from(document.querySelectorAll(".read"));
+
+const formChildren = Array.from(form.querySelectorAll("*"));
+
 
 function Book(title, author, pages, read) {
 	this.title = title;
@@ -21,7 +24,7 @@ function Book(title, author, pages, read) {
 form.style.display = "none";
 
 addBook.addEventListener("click", () => {
-	form.style.display = "block";
+	form.style.display = "grid";
 })
 
 let titleName = "";
@@ -53,11 +56,34 @@ submitbtn.addEventListener("click", (e) => {
 	}
 
 	const book = new Book(titleName, authorName, pagesNum, readStatus);
-	myLibrary.push(book);
 	renderNewBook(book);
 	clearForm();
 	form.style.display = "none";
 })
+
+function switchReadStatus() {
+	statusOfBooks.forEach((status) => {
+		status.addEventListener("click", () => {
+			if (status.textContent == "Read") {
+				status.textContent = "Not Read";
+				status.style.backgroundColor = "#ffcccb";
+			}
+			else {
+				status.textContent = "Read";
+				status.style.backgroundColor = "lightgreen";
+			}
+		})
+	})
+}
+switchReadStatus();
+
+document.addEventListener("click", (e) => {
+	if (!isWithinForm(e.target)) {
+		form.style.display = "none";
+		clearForm();
+	}
+})
+
 
 function renderNewBook(book) {
 	const bookDiv = document.createElement("div");
@@ -73,21 +99,25 @@ function renderNewBook(book) {
 
 	const pagesDiv = document.createElement("div");
 	pagesDiv.classList.add("pages");
-	pagesDiv.textContent = book.pages;
+	pagesDiv.textContent = book.pages.concat(" pages");
 
-	const readDiv = document.createElement("div");
-	readDiv.classList.add("read");
+	const readButton = document.createElement("button");
 	if (book.read) {
-		readDiv.textContent = "Read";
+		readButton.textContent = "Read";
+		readButton.style.backgroundColor = "lightgreen";
 	}
 	else {
-		readDiv.textContent = "Not Read";
+		readButton.textContent = "Not Read";
+		readButton.style.backgroundColor = "#ffcccb";
 	}
+	readButton.classList.add("read");
+	statusOfBooks.push(readButton);
+	switchReadStatus();
 
 	bookDiv.appendChild(titleDiv);
 	bookDiv.appendChild(authorDiv);
 	bookDiv.appendChild(pagesDiv);
-	bookDiv.appendChild(readDiv);
+	bookDiv.appendChild(readButton);
 
 	main.appendChild(bookDiv);
 }
@@ -96,4 +126,14 @@ function clearForm() {
 	titleName = ""; authorName = ""; pagesNum = ""; readStatus = false;
 	title.value = ""; author.value = ""; pages.value = ""; 
 	read.checked = false
+}
+
+function isWithinForm(target) {
+	if (target == form || target == addBook) {
+		return true;
+	}
+	if (formChildren.includes(target)) {
+		return true;
+	}
+	return false;
 }
