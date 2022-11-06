@@ -111,7 +111,7 @@ form .buttons button:hover {
 
 .book {
 		display: grid;
-		grid-template-rows: repeat(4, 1fr);
+		grid-template-rows: repeat(5, 1fr);
 		align-items: center;
 		justify-content: center;
 		border: 0px solid black;
@@ -129,8 +129,8 @@ form .buttons button:hover {
 		word-wrap: break-word;
 }
 
-.book :last-child {
-		background-color: lightgreen;
+.book .remove,
+.book .read {
 		padding: 5px;
 		cursor: pointer;
 		border-radius: 5px;
@@ -140,7 +140,12 @@ form .buttons button:hover {
 		justify-self: center;
 }
 
-.book :last-child:hover {
+.book .read:hover {
 		opacity: 0.8;
+}
+
+.book .remove:hover {
+		opacity: 0.8;
+		background-color: #ff7f7f;
 }
 

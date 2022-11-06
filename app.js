@@ -9,8 +9,6 @@ const pages = document.getElementById("pages");
 const read = document.getElementById("read");
 const submitbtn = document.getElementById("submit");
 
-const statusOfBooks = Array.from(document.querySelectorAll(".read"));
-
 const formChildren = Array.from(form.querySelectorAll("*"));
 
 
@@ -61,21 +59,25 @@ submitbtn.addEventListener("click", (e) => {
 	form.style.display = "none";
 })
 
-function switchReadStatus() {
-	statusOfBooks.forEach((status) => {
-		status.addEventListener("click", () => {
-			if (status.textContent == "Read") {
-				status.textContent = "Not Read";
-				status.style.backgroundColor = "#ffcccb";
-			}
-			else {
-				status.textContent = "Read";
-				status.style.backgroundColor = "lightgreen";
-			}
-		})
+function switchReadStatus(element) {
+	element.addEventListener("click", () => {
+		console.log(element.textContent);
+		if (element.textContent == "Read") {
+			element.textContent = "Not Read";
+			element.style.backgroundColor = "#ffcccb";
+		}
+		else {
+			element.textContent = "Read";
+			element.style.backgroundColor = "lightgreen";
+		}
 	})
 }
-switchReadStatus();
+
+function removeBook(element) {
+	element.addEventListener("click", (e) => {
+		e.target.parentElement.remove();
+	})
+}
 
 document.addEventListener("click", (e) => {
 	if (!isWithinForm(e.target)) {
@@ -111,15 +113,21 @@ function renderNewBook(book) {
 		readButton.style.backgroundColor = "#ffcccb";
 	}
 	readButton.classList.add("read");
-	statusOfBooks.push(readButton);
-	switchReadStatus();
+	switchReadStatus(readButton);
+
+	const removeButton = document.createElement("button");
+	removeButton.textContent = "Remove";
+	removeButton.classList.add("remove");
 
 	bookDiv.appendChild(titleDiv);
 	bookDiv.appendChild(authorDiv);
 	bookDiv.appendChild(pagesDiv);
 	bookDiv.appendChild(readButton);
-
+	bookDiv.appendChild(removeButton);
+	
 	main.appendChild(bookDiv);
+
+	removeBook(removeButton);
 }
 
 function clearForm() {
